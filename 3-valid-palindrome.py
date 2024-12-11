@@ -1,5 +1,6 @@
 # https://leetcode.com/problems/valid-palindrome/
 
+
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         after_removing: str = self.__remove_non_alphanumeric_characters(s.lower()) 

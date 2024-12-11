@@ -1,5 +1,6 @@
 # https://leetcode.com/problems/summary-ranges/
 
+
 class Solution:
     def summaryRanges(self, nums: list[int]) -> list[str]:
         if not nums:
