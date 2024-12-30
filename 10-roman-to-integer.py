@@ -1,8 +1,9 @@
-# https://leetcode.com/problems/roman-to-integer/s
+# https://leetcode.com/problems/roman-to-integer/ 
 
 TEST_CASES = [
-        ({"s": "III"}, 3),
         ({"s": "LVIII"}, 58),
+        ({"s": "III"}, 3),
+        ({"s": "MCMXCIV"}, 1994),
 ]
 
 
@@ -36,8 +37,8 @@ class Solution:
             number += table[current]
             idx+=1
             continue
-
-        return number
+        
+        return number        
 
 
 if __name__ == "__main__":
