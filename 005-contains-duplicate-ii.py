@@ -1,7 +1,10 @@
 # https://leetcode.com/problems/contains-duplicate-ii/
 
 
-class Solution:
+from typing import List
+
+
+class Solution1:
     def containsNearbyDuplicate(self, nums: list[int], k: int) -> bool:
         if k == 0:
             return False
@@ -35,6 +38,27 @@ class Solution:
             right+=1
 
         return False
+
+
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool: # Time: O(n), space O(1)
+        l = 0
+        memo = set()
+        for r in range(len(nums)):
+            # slide the window
+            # check if there is any duplicate in window
+            if nums[r] in memo:
+                return True
+
+            memo.add(nums[r])
+
+            if w:= r - l + 1 > k:
+                memo.remove(nums[l])
+                l += 1
+            
+            r += 1
+        return False
+
 
 
 if __name__ == "__main__":
