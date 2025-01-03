@@ -1,7 +1,10 @@
 # https://leetcode.com/problems/summary-ranges/
 
 
-class Solution:
+from typing import List
+
+
+class Solution1:
     def summaryRanges(self, nums: list[int]) -> list[str]:
         if not nums:
             return []
@@ -26,6 +29,21 @@ class Solution:
                 else:
                     output.append(f"{a}->{b}")
 
+        return output
+
+class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        output = []
+        r = 0
+        while r < len(nums):
+            l = r
+            while r < len(nums) - 1 and nums[r+1] - nums[r] == 1:
+                r += 1
+            if l == r:
+                output.append(f"{nums[l]}")
+            else:
+                output.append(f"{nums[l]}->{nums[r]}")
+            r += 1
         return output
 
 
