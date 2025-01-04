@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/linked-list-cycle/
 
-
 from typing import Optional
 
 
@@ -14,21 +13,20 @@ class ListNode:
 class Solution1: # time: O(N), space: O(N)
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         visited = set()
-        cur = head
-        while cur:
-            if cur in visited:
+        while head:
+            if head in visited:
                 return True
-            visited.add(cur)
-            cur = cur.next
+            visited.add(head)
+            head = head.next
         
         return False
 
+
 class Solution2: # time: O(N), space: O(1)
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        cur = head
-        while cur:
-            if cur.val == "visited": return True
-            cur.val = "visited"
-            cur = cur.next
+        while head:
+            if head.val == "visited": return True
+            head.val = "visited"
+            head = head.next
         
         return False
