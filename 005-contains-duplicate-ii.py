@@ -40,7 +40,7 @@ class Solution1:
         return False
 
 
-class Solution:
+class Solution2:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool: # Time: O(n), space O(1)
         l = 0
         memo = set()
@@ -59,6 +59,21 @@ class Solution:
             r += 1
         return False
 
+
+class Solution:
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool: # Time: O(n), space O(1)
+        l = r = 0
+        memo = set()
+        while r < len(nums):
+            while r-l <= k and r < len(nums):
+                if nums[r] in memo:
+                    return True
+                memo.add(nums[r])
+                r += 1
+            memo.remove(nums[l])
+            l += 1
+
+        return False
 
 
 if __name__ == "__main__":
