@@ -3,19 +3,14 @@
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        number_of_visited_letters: dict[str, int] = {}
+        counter: dict[str, int] = {}
         for c in s:
-            if c in number_of_visited_letters:
-                number_of_visited_letters[c] += 1
-                continue
-            number_of_visited_letters[c] = 1
+            counter[c] = counter.get(c, 0) + 1
         for c in t:
-            if c not in number_of_visited_letters:
+            if c not in counter or counter[c] == 0:
                 return False
-            if number_of_visited_letters[c] == 0:
-                return False
-            number_of_visited_letters[c] -= 1
-        all_zero = all(x == 0 for x in number_of_visited_letters.values())
+            counter[c] -= 1
+        all_zero = all(x == 0 for x in counter.values())
         if all_zero:
             return True
         return False
