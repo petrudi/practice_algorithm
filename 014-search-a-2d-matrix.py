@@ -60,7 +60,6 @@ class Solution:
                 return target in matrix[0]
 
         a = [row[0] for row in matrix]
-        print(f"{a=}")
         idx , was_found = binary_search(a, target)
         if was_found:
             return True
