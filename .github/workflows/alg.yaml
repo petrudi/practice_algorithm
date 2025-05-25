@@ -1,0 +1,48 @@
+name: Python application CI
+
+on:
+  push:
+    branches: ["main", "master"] # Adjust to your default branch if different
+  pull_request:
+    branches: ["main", "master"] # Adjust to your default branch if different
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"] # Test on multiple Python versions
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4 # Using the latest major version
+
+      # This step should already be in your workflow to make Python available
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v1 # Use the latest version of the setup-uv action
+        with:
+          # This tells setup-uv to create a virtual environment
+          # using the Python version made available by actions/setup-python.
+          # uv will then operate within this venv.
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies with uv
+        run: |
+          uv pip install pytest
+          # If you have other dependencies, list them in a requirements.txt
+          # and install them using: uv pip install -r requirements.txt
+
+      - name: Test with pytest
+        run: |
+          # The command 'pytest' will automatically discover tests in the 'tests' directory
+          # if run from the root of the repository.
+          # If your tests are in a different location or need specific options, adjust here.
+          pytest
