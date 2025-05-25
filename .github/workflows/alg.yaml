@@ -2,9 +2,9 @@ name: Python application CI
 
 on:
   push:
-    branches: ["main", "master"] # Adjust to your default branch if different
+    branches: ["main", "master"]
   pull_request:
-    branches: ["main", "master"] # Adjust to your default branch if different
+    branches: ["main", "master"]
 
 permissions:
   contents: read
@@ -14,35 +14,34 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"] # Test on multiple Python versions
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4 # Using the latest major version
+        uses: actions/checkout@v4
 
-      # This step should already be in your workflow to make Python available
       - name: Set up Python ${{ matrix.python-version }}
+        id: setup_python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@v1 # Use the latest version of the setup-uv action
+        uses: astral-sh/setup-uv@v1
         with:
-          # This tells setup-uv to create a virtual environment
-          # using the Python version made available by actions/setup-python.
-          # uv will then operate within this venv.
-          python-version: ${{ matrix.python-version }}
+          # Use the Python executable path from the setup-python step's output
+          python-version: ${{ steps.setup_python.outputs.python-path }} # <-- CRITICAL CHANGE HERE
 
-      - name: Install dependencies with uv
+      - name: Install dependencies and run tests
         run: |
+          uv venv
+          source .venv/bin/activate
           uv pip install pytest
-          # If you have other dependencies, list them in a requirements.txt
-          # and install them using: uv pip install -r requirements.txt
+          pytest -v tests/ --junitxml=test-results-${{ matrix.python-version }}.xml
 
-      - name: Test with pytest
-        run: |
-          # The command 'pytest' will automatically discover tests in the 'tests' directory
-          # if run from the root of the repository.
-          # If your tests are in a different location or need specific options, adjust here.
-          pytest
+      - name: Upload pytest test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-results-${{ matrix.python-version }}
+          path: test-results-${{ matrix.python-version }}.xml
