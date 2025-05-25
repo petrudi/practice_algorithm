@@ -4,7 +4,7 @@
 from typing import List
 
 
-class Solution1:
+class Solution:
     def summaryRanges(self, nums: list[int]) -> list[str]:
         if not nums:
             return []
@@ -44,6 +44,21 @@ class Solution:
             else:
                 output.append(f"{nums[l]}->{nums[r]}")
             r += 1
+        return output
+
+class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        output = []
+        l = 0
+        while l < len(nums):
+            r = l
+            while r < len(nums)-1  and nums[r+1] - nums[r] == 1:
+                r += 1
+            if l == r: 
+                output.append(f"{nums[l]}")
+            else:
+                output.append(f"{nums[l]}->{nums[r]}")
+            l = r + 1
         return output
 
 
