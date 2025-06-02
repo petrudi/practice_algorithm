@@ -1,13 +1,15 @@
 # https://leetcode.com/problems/valid-palindrome/
 
+import re
+
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        after_removing: str = self.__remove_non_alphanumeric_characters(s)
+        only_alphanumeric: str = re.sub(r"[^a-zA-Z0-9]", "", s.lower())
         p_start = 0
-        p_end = len(after_removing) - 1
-        for i in range(len(after_removing)):
-            if after_removing[p_start] != after_removing[p_end]:
+        p_end = len(only_alphanumeric) - 1
+        for i in range(len(only_alphanumeric)):
+            if after_removing[p_start] != only_alphanumeric[p_end]:
                 return False
             p_start += 1
             p_end -= 1
@@ -17,9 +19,4 @@ class Solution:
 
         return True
 
-    @staticmethod
-    def __remove_non_alphanumeric_characters(s: str) -> str:
-        import re
-
-        return re.sub(r"[^a-zA-Z0-9]", "", s.lower())
 
