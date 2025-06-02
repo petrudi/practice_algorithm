@@ -7,7 +7,7 @@ class Solution:
         for c in s:
             counter[c] = counter.get(c, 0) + 1
         for c in t:
-            if c not in counter or counter[c] == 0:
+            if counter.get(c, 0) == 0:
                 return False
             counter[c] -= 1
         all_zeros = all(x == 0 for x in counter.values())
