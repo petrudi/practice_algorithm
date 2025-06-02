@@ -9,7 +9,7 @@ class Solution:
         p_start = 0
         p_end = len(only_alphanumeric) - 1
         for i in range(len(only_alphanumeric)):
-            if after_removing[p_start] != only_alphanumeric[p_end]:
+            if only_alphanumeric[p_start] != only_alphanumeric[p_end]:
                 return False
             p_start += 1
             p_end -= 1
