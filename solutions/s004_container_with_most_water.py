@@ -23,4 +23,3 @@ class Solution:
         return optimum_output
 
 
-
