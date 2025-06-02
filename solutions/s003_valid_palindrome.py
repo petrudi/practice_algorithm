@@ -3,7 +3,7 @@
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        after_removing: str = self.__remove_non_alphanumeric_characters(s.lower())
+        after_removing: str = self.__remove_non_alphanumeric_characters(s)
         p_start = 0
         p_end = len(after_removing) - 1
         for i in range(len(after_removing)):
@@ -21,5 +21,5 @@ class Solution:
     def __remove_non_alphanumeric_characters(s: str) -> str:
         import re
 
-        return re.sub(r"[^a-zA-Z0-9]", "", s)
+        return re.sub(r"[^a-zA-Z0-9]", "", s.lower())
 
