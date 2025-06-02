@@ -62,15 +62,3 @@ class Solution:
                 output.append(f"{nums[l]}->{nums[r]}")
             l = r + 1
         return output
-
-
-if __name__ == "__main__":
-    test_cases = [
-        ({"nums": [0, 1, 2, 4, 5, 7]}, ["0->2", "4->5", "7"]),
-        ({"nums": [0, 2, 3, 4, 6, 8, 9]}, ["0", "2->4", "6", "8->9"]),
-    ]
-    for inputs, expected_output in test_cases:
-        actual_output = Solution().summaryRanges(**inputs)
-        assert actual_output == expected_output, f"{actual_output=}, {expected_output=}"
-
-    print("all passed!")
