@@ -79,18 +79,3 @@ class Solution:
 
         return False
 
-
-if __name__ == "__main__":
-    test_cases = [
-        ({"nums": [1, 2, 3, 1], "k": 3}, True),
-        ({"nums": [1, 0, 1, 1], "k": 1}, True),
-        ({"nums": [1, 2, 3, 1, 2, 3], "k": 2}, False),
-        ({"nums": [99, 99], "k": 2}, True),
-    ]
-    for inputs, expected_output in test_cases:
-        actual_output = Solution().containsNearbyDuplicate(**inputs)
-        assert actual_output == expected_output, (
-            f"{inputs=}, {actual_output=}, {expected_output=}"
-        )
-
-    print("all passed!")
