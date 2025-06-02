@@ -9,16 +9,16 @@ class Solution:
         if len(height) in [0, 1]:
             return optimum_output
 
-        p1 = 0
-        p2 = len(height) - 1
-        while p1 < p2:
-            min_height = min(height[p1], height[p2])
-            area = calc_area(p1, p2, min_height)
+        l = 0
+        r = len(height) - 1
+        while l < r:
+            min_height = min(height[l], height[r])
+            area = calc_area(l, r, min_height)
             optimum_output = max(area, optimum_output)
-            if height[p1] < height[p2]:
-                p1 += 1
+            if height[l] < height[r]:
+                l += 1
                 continue
-            p2 -= 1
+            r -= 1
 
         return optimum_output
 
