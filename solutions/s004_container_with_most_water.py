@@ -23,14 +23,4 @@ class Solution:
         return optimum_output
 
 
-if __name__ == "__main__":
-    test_cases = [
-        ({"height": [1, 8, 6, 2, 5, 4, 8, 3, 7]}, 49),
-    ]
-    for inputs, expected_output in test_cases:
-        actual_output = Solution().maxArea(**inputs)
-        assert actual_output == expected_output, (
-            f"{inputs=}, {actual_output=}, {expected_output=}"
-        )
 
-    print("all passed!")
