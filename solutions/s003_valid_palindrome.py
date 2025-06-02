@@ -6,15 +6,15 @@ import re
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         only_alphanumeric: str = re.sub(r"[^a-zA-Z0-9]", "", s.lower())
-        p_start = 0
-        p_end = len(only_alphanumeric) - 1
+        l = 0
+        r = len(only_alphanumeric) - 1
         for i in range(len(only_alphanumeric)):
-            if only_alphanumeric[p_start] != only_alphanumeric[p_end]:
+            if only_alphanumeric[l] != only_alphanumeric[r]:
                 return False
-            p_start += 1
-            p_end -= 1
+            l += 1
+            r -= 1
 
-            if p_start >= p_end:
+            if l >= r:
                 return True
 
         return True
