@@ -12,15 +12,3 @@ class Solution:
             counter[c] -= 1
 
         return True
-
-
-if __name__ == "__main__":
-    test_cases = [
-        ({"s": "anagram", "t": "nagaram"}, True),
-        ({"s": "rat", "t": "car"}, False),
-    ]
-    for inputs, expected_output in test_cases:
-        actual_output = Solution().isAnagram(**inputs)
-        assert actual_output == expected_output, f"{actual_output=}, {expected_output=}"
-
-    print("all passed!")
