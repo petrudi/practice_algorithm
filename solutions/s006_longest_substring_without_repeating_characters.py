@@ -7,9 +7,6 @@ class Solution:
         m = 0
         mem:dict[str,int] = {} #item,index
         while r < len(s):
-            # validate and clean substring
-            # calculate max
-            # update set
             if s[r] in mem:
                 l = mem[s[r]] + 1
             w = r - l + 1
