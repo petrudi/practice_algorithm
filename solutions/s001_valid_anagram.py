@@ -10,8 +10,8 @@ class Solution:
             if counter.get(c, 0) == 0:
                 return False
             counter[c] -= 1
-        all_zeros = all(x == 0 for x in counter.values())
-        return all_zeros
+
+        return True
 
 
 if __name__ == "__main__":
