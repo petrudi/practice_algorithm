@@ -31,3 +31,4 @@ class Solution:
             prefix = prefix[:i]
         return prefix
 
+
