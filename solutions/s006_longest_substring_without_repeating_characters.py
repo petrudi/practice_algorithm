@@ -14,7 +14,7 @@ class Solution:
                 l = mem[s[r]] + 1
             w = r - l + 1
             m = max(m, w)
-            m[s[r]] = r
+            mem[s[r]] = r
             r += 1
 
         return m
