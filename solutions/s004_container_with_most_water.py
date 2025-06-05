@@ -5,10 +5,10 @@ calc_area = lambda i, j, h: (j - i) * h
 
 class Solution:
     def maxArea(self, height: list[int]) -> int:
-        optimum_output = 0
         if len(height) in [0, 1]:
-            return optimum_output
+            return 0
 
+        optimum_output = 0
         l = 0
         r = len(height) - 1
         while l < r:
