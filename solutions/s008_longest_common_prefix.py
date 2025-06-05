@@ -2,11 +2,6 @@
 
 from typing import List
 
-TEST_CASES = [
-    ({"strs": ["flower", "flow", "flight"]}, "fl"),
-    ({"strs": ["dog", "racecar", "car"]}, ""),
-]
-
 
 class Solution1:
     def longestCommonPrefix(self, strs: List[str]) -> str:
@@ -36,12 +31,3 @@ class Solution:
             prefix = prefix[:i]
         return prefix
 
-
-if __name__ == "__main__":
-    for inputs, expected_output in TEST_CASES:
-        actual_output = Solution().longestCommonPrefix(**inputs)
-        assert actual_output == expected_output, (
-            f"{inputs=}, {actual_output=}, {expected_output=}"
-        )
-
-    print("all passed!")
