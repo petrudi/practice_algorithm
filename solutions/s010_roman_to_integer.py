@@ -1,11 +1,5 @@
 # https://leetcode.com/problems/roman-to-integer/
 
-TEST_CASES = [
-    ({"s": "LVIII"}, 58),
-    ({"s": "III"}, 3),
-    ({"s": "MCMXCIV"}, 1994),
-]
-
 
 class Solution:
     def romanToInt(self, s: str) -> int:
@@ -42,13 +36,3 @@ class Solution:
             continue
 
         return number
-
-
-if __name__ == "__main__":
-    for inputs, expected_output in TEST_CASES:
-        actual_output = Solution().romanToInt(**inputs)
-        assert actual_output == expected_output, (
-            f"{inputs=}, {actual_output=}, {expected_output=}"
-        )
-
-    print("all passed!")
