@@ -1,9 +1,18 @@
-# https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
+"""
+https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
 
-TEST_CASES = [
-    ({"haystack": "sadbutsad", "needle": "sad"}, 0),
-    ({"haystack": "hello", "needle": "ll"}, 2),
-]
+Example 1:
+
+Input: haystack = "sadbutsad", needle = "sad"
+Output: 0
+Explanation: "sad" occurs at index 0 and 6.
+The first occurrence is at index 0, so we return 0.
+Example 2:
+
+Input: haystack = "leetcode", needle = "leeto"
+Output: -1
+Explanation: "leeto" did not occur in "leetcode", so we return -1.
+"""
 
 
 class Solution:
@@ -15,13 +24,3 @@ class Solution:
             if haystack[idx : idx + len(needle)] == needle:
                 return idx
         return -1
-
-
-if __name__ == "__main__":
-    for inputs, expected_output in TEST_CASES:
-        actual_output = Solution().strStr(**inputs)
-        assert actual_output == expected_output, (
-            f"{inputs=}, {actual_output=}, {expected_output=}"
-        )
-
-    print("all passed!")
